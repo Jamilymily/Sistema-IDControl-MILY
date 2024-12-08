@@ -1,3 +1,4 @@
+from UsuarioIFRO import UsuarioIFRO
 class Aluno(UsuarioIFRO):
   def __init__(self, nome, cpf, matricula, senha, turma):
     super().__init__(nome,cpf,senha, matricula)

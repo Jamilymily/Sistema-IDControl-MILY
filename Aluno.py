@@ -1,4 +1,5 @@
 from UsuarioIFRO import UsuarioIFRO
+import time
 class Aluno(UsuarioIFRO):
   def __init__(self, nome, cpf, matricula, senha, turma):
     super().__init__(nome,cpf,senha, matricula)

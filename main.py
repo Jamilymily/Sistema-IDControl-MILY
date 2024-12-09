@@ -16,8 +16,9 @@ print("Olá,Seja bem-vindo(a) ao nosso Sistema IDCotrol.")
 print("*=*"*16)
 time.sleep(0.5)
 while True:
-    acesso=int(input("Você deseja acessar cadastro ou relatório?\n [1]Cadastro\n[2]relatório"))
-    if acesso()==1:
+    acesso =input("Você deseja acessar cadastro ou relatório?\n [D] Cadastro\n [E] Relatório\n\n R:")
+
+    if acesso.upper()=="D":
       adicionar=input("\nVocê vai ser cadastrar na área aluno ou servidor?\n\n[A]Aluno\n[B]Servidor\n[C]Visitante\n\nResposta=")
     if adicionar.upper() == "A":
       print("*=*"*12)
@@ -56,7 +57,7 @@ while True:
     if adicionar.upper() not in ["A", "B", "C"]:
       print("Resposta inválida, tente novamente")
       continue
-    elif acesso==2:
+    elif acesso.upper=="E":
       print("\n=== ÁREA DE RELATÓRIO ===")
       gerencia= GerenciadorRelatorio()
       rela1= Relatorio(1,"Aluno", datetime.now(), alunos=15)

@@ -1,6 +1,5 @@
-from UsuarioIFRO import UsuarioIFRO
 import time
-class Aluno(UsuarioIFRO):
+class Aluno:
   def __init__(self, nome, cpf, matricula, senha, turma):
     super().__init__(nome,cpf,senha, matricula)
     self.__turma=turma
@@ -75,15 +74,13 @@ class Aluno(UsuarioIFRO):
       print("*=*="*6)
       if resposta.upper() == "A":
         nova_turma = input("Digite sua nova turma (máximo 30 caracteres):")
-        if len(str(nova_turma)) <= 30:
-          self.__turma = nova_turma
-          time.sleep(1)
-          print("\nTurma atualizada com sucesso:)")
-          print("*=*="*6)
-          return
-     
-        else:
-          print("A turma deve ter no máximo 30 caracteres. Por favor,digite novamente.")
+      if len(str(nova_turma)) <= 30:
+        self.__turma = nova_turma
+        time.sleep(1)
+        print("\nTurma atualizada com sucesso:)")
+        print("*=*="*6)
+        return
+      
       elif resposta.upper() == "B":
         print(f"Ok, {self.__nome},você optou por não trocar de turma.")
         break

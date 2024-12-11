@@ -1,9 +1,6 @@
-#Apresentação - Alice
-#  A classe Visitante tem uma relação de associação com a Classe Recepcionista.
-# No entanto, ela é independente e não acessa as funções da catraca, como senha e matrícula.
-  
+import time
+
 class Visitante:
-  import time
   def __init__(self,nome,cpf, idade,documento):
     self.__nome= nome
     self.__cpf=cpf

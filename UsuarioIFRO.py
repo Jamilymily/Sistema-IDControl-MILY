@@ -24,7 +24,7 @@ class UsuarioIFRO(ABC):
     self.__senha = int(input("Digite sua senha: "))
     return self.__senha
   
-  def set_senha(self):
+  def set_senha(self, novasenha):
     self.__novasenha =("Digite sua nova senha:")
     self.__novasenha = self.__senha
     print("Senha alterada com sucesso")

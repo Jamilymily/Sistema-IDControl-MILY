@@ -1,12 +1,41 @@
 
 import time
-class Servidor:
+from abc import ABC
+
+from UsuarioIFRO import UsuarioIFRO
+
+class UsuarioIFRO(ABC):
+  def __init__(self,nome,cpf, matricula, senha):
+    self.__nome= nome
+    self.__cpf=cpf
+    self.__matricula = matricula
+    self.__senha=senha
+
+  def get_nome(self):
+    return self.__nome 
+
+  def get_cpf(self):
+    return self.__cpf
+
+  def get_matricula(self):
+    return self.__matricula
+
+  def get_senha(self):
+    return self.__senha
+
+  def criar_senha (self):
+    self.__senha = int(input("Digite sua senha: "))
+    return self.__senha
+  
+  def set_senha(self, novasenha):
+    self.__novasenha =("Digite sua nova senha:")
+    self.__novasenha = self.__senha
+    print("Senha alterada com sucesso")
+
+class Servidor(UsuarioIFRO):
   def __init__ (self,nome,cpf,senha,matricula,departamento):
     super().__init__(nome,cpf,senha,matricula)
     self.__departamento=departamento
-
-  def get_departamento(self):
-    return self.__departamento
 
   def cadastrar_servidor(self):
     try:

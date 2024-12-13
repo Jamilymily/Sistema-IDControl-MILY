@@ -1,5 +1,6 @@
 import time
-class Aluno:
+from UsuarioIFRO import UsuarioIFRO
+class Aluno(UsuarioIFRO):
   def __init__(self, nome, cpf, matricula, senha, turma):
     super().__init__(nome,cpf,senha, matricula)
     self.__turma=turma
@@ -70,21 +71,28 @@ class Aluno:
 #Função para atualizar a turma do aluno set:
   def set_turma(self):
     while True:
-      resposta = input(f"\n{self.__nome},deseja atualizar sua turma?\n\n[A] Sim\n[B] Não\nResposta: ")
-      print("*=*="*6)
-      if resposta.upper() == "A":
-        nova_turma = input("Digite sua nova turma (máximo 30 caracteres):")
-      if len(str(nova_turma)) <= 30:
-        self.__turma = nova_turma
-        time.sleep(1)
-        print("\nTurma atualizada com sucesso:)")
+      try:
+        resposta = input(f"\n{self.__nome},deseja atualizar sua turma?\n\n[A] Sim\n[B] Não\nResposta: ")
         print("*=*="*6)
-        return
-      
-      elif resposta.upper() == "B":
-        print(f"Ok, {self.__nome},você optou por não trocar de turma.")
-        break
-      else:
-        print("Resposta inválida. Por favor, escolha [A] para sim ou [B] para não.")
-        break
+        if resposta.upper() == "A":
+          nova_turma = input("Digite sua nova turma (máximo 30 caracteres):")
+          if len(nova_turma) <= 30:
+            self.__turma = nova_turma
+            time.sleep(1)
+            print("\nTurma atualizada com sucesso:)")
+            print("*=*="*6)
+            return
+          else:
+            print("Erro: A tuma deve ter no máximo 30 caracteres")
+        elif resposta.upper() == "B":
+          print(f"Ok, {self.__nome},você optou por não trocar de turma.")
+          break
+        else:
+          print("Resposta inválida. Por favor, escolha [A] para sim ou [B] para não.")
+      except UnboundLocalError:
+        print("Erro, a variavel não foi definida,Certifique-se de selecionar a opção correta e tente novamente.")
+
+      except Exception as e:
+            print(f"Ocorreu um erro inesperado: {e}")
+            print("Por favor, tente novamente.")
 

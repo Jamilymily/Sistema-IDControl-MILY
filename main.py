@@ -3,12 +3,12 @@
  
 import time
 from Aluno import Aluno
-from Relatorio import GerenciadorRelatorio, Relatorio
+from GerenciadorRelatorio import GerenciadorRelatorio
+from Relatorio import  Relatorio
 from Servidor import Servidor
 from Visitante import Visitante
 from datetime import datetime, timedelta
 
-from rela2 import rela2
 
 time.sleep(0.1)
 print("*=*" * 16)
@@ -24,7 +24,7 @@ while True:
     print("*=*"*12)
     aluno=Aluno(nome="", cpf="", matricula="", senha="", turma="")
     aluno.cadastrar_aluno()
-    aluno.atualizar_turma()
+    aluno.set_turma()
     aluno.exibirDados_aluno()
     print("."*15)
     print("\nCadastrado na área aluno com sucesso")
@@ -50,38 +50,40 @@ while True:
     visitante.cadastrar_visitante()
     visitante.exibirDados_Visitante()
     break 
-
-while True:  
-  resposta= input("Você deseja ter acesso a área de relatório?\n[A]Sim\n[B]Não")
-  if resposta.upper()=="A":
-    print("\n=== ÁREA DE RELATÓRIO ===")
-    gerencia= GerenciadorRelatorio()
-    rela1= Relatorio(1,"Aluno", datetime.now(), alunos=50)
-    rela3= Relatorio(3,"Servidor", datetime.now() - timedelta(days=1), servidor=5)
-    rela4=Relatorio(4,"Visitante", datetime.now() -  timedelta(days=2), visitantes=1)
-
-    gerencia.adicionar_relatorio(rela1)
-    gerencia.adicionar_relatorio(rela2)
-    gerencia.adicionar_relatorio(rela3)
-    gerencia.adicionar_relatorio(rela4)
-
-    print("\n=== RELATÓRIOS ====")
-    gerencia.lista_relatorio()
-
-    print("\n=== SAÍDA ===")
-    rela2.saida(datetime.now())
-    rela2.exibirRelatorio()
- 
-    print("\n=== RELATÓRIO MODO 'VISITANTE'===")
-    gerencia.lista_relatorio("Visitante")
-
-    print("\n=== RELATÓRIO MODO 'SERVIDOR'===")
-    gerencia.lista_relatorio("Servidor")
-
-    print("\n=== RELATÓRIO MODO 'ALUNO'===")
-    gerencia.lista_relatorio("Aluno")
-    break
+  else:
+    print("Resposta inválida. Por favor, escolha [A], [B] ou [C].")
   
-  elif resposta.upper()=="B":
-    print("OK, você não deseja ter acesso a essa área")
+while True:  
+  resposta = input("Você deseja ter acesso a área de relatório?\n[A]Sim\n[B]Não\nR:")
+  if resposta.upper() == "A":
+    print("===ÁREA RELATÓRIO===")
+    relatorio1 = Relatorio(1, "Aluno", datetime.now(), visitantes=50)
+    relatorio2 = Relatorio(2, "Servidor", datetime.now() - timedelta(days=1), visitantes=10)
+
+    # Criando o gerenciador e adicionando os relatórios
+    gerenciador = GerenciadorRelatorio()
+    gerenciador.adicionar_relatorio(relatorio1)
+    gerenciador.adicionar_relatorio(relatorio2)
+
+   
+    # Listando relatórios do tipo "Aluno"
+    print("\n=== RELATÓRIOS DO TIPO 'ALUNO' ===")
+    gerenciador.lista_relatorio("Aluno")
+
+    # Registrando saída para o relatório 1
+    print("\n=== REGISTRANDO SAÍDA PARA O RELATÓRIO 1 ===")
+    relatorio1.registrar_saida(datetime.now())
+
+    # Listando novamente para verificar a saída registrada
+    print("\n=== RELATÓRIOS ATUALIZADOS ===")
+    gerenciador.lista_relatorio()
     break
+      
+  elif resposta.upper()=="B":
+    print("O relatório não será exibido")
+    break
+      
+  else:
+    print("Resposta inválida. Por favor, escolha [A] para sim ou [B] para não.")
+    break
+    

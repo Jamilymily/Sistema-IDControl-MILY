@@ -57,7 +57,6 @@ while True:
     print("\n=== ÁREA DE RELATÓRIO ===")
     gerencia= GerenciadorRelatorio()
     rela1= Relatorio(1,"Aluno", datetime.now(), alunos=50)
-    rela2= Relatorio(2,"Visitante", datetime.now(), alunos=15)
     rela3= Relatorio(3,"Servidor", datetime.now() - timedelta(days=1), servidor=5)
     rela4=Relatorio(4,"Visitante", datetime.now() -  timedelta(days=2), visitantes=1)
 
